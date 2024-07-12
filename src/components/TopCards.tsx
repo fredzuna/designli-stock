@@ -8,11 +8,11 @@ interface ICardItem {
 function CardItem({ stock }: ICardItem) {
   return (
     <div style={{ display: 'flex', gap: '10px' }}>
-      <Card
-        key={stock.symbol}
+      <Card        
         style={{
           backgroundColor: stock.price >= stock.alertValue ? 'green' : 'red',
         }}
+        className={stock.symbol}
       >
         <CardContent>
           <Typography variant="h5">{stock.symbol}</Typography>
@@ -40,8 +40,8 @@ export default function TopCards({ stocks }: ITopCards) {
           </Typography>
         </Grid>
       }
-      {stocks.map((stock) => (
-        <Grid xs="auto" item>
+      {stocks.map((stock, index) => (
+        <Grid xs="auto" key={stock.symbol+index} item>
           <CardItem stock={stock} />
         </Grid>
       ))}

@@ -3,10 +3,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { IStockData } from '../interfaces/IStockData';
 
 interface StockChartProps {
-  data: { [key: string]: IStockData[] };
+  data?: { [key: string]: IStockData[] }; // Make the data prop optional
 }
 
-const StockChart: React.FC<StockChartProps> = ({ data }) => {
+const StockChart: React.FC<StockChartProps> = ({ data = {} }) => {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart>
