@@ -17,7 +17,6 @@ const App: React.FC = () => {
     const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
 
     socket.addEventListener('open', () => {
-      console.log('open event is triggered when the WebSocket connection is successfully established')
       stocks.forEach((stock) => {
         socket.send(JSON.stringify({ type: 'subscribe', symbol: stock.symbol }));
       });

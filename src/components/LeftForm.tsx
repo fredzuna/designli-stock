@@ -31,24 +31,12 @@ export default function LeftForm({ onAddStock }: IProps) {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log('Form values', values);
       handleSubmit(values)
     },
   });
 
   const handleSubmit = (values: IStockFormValues) => {
-    // onAddStock(symbol.symbol, alertValue);
-
-
     onAddStock(values.symbol, values.alertValue);
-    // onAddStock('BTCM', 2);    
-    //onAddStock('BINANCE:BTCUSDT', 2);    
-    // onAddStock('IC MARKETS:1', 2);
-    // onAddStock('AAPL', 2);
-    // onAddStock('ETH/USD', 2);
-    // onAddStock('BTC', 2);
-
-
   };
 
   useEffect(() => {
