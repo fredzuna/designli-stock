@@ -7,13 +7,14 @@ import Header from './components/common/Header';
 import MainContainer from './components/common/MainContainer';
 import { IStock } from './interfaces/IStock';
 import { IStockData } from './interfaces/IStockData';
+import { apiKey } from './services/apiService';
 
 const App: React.FC = () => {
   const [stocks, setStocks] = useState<IStock[]>([]);
   const [stockData, setStockData] = useState<{ [key: string]: IStockData[] }>({});
 
   useEffect(() => {
-    const socket = new WebSocket('wss://ws.finnhub.io?token=cq7k9ihr01qormuik3m0cq7k9ihr01qormuik3mg');
+    const socket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
 
     socket.addEventListener('open', () => {
       console.log('open event is triggered when the WebSocket connection is successfully established')
@@ -24,8 +25,6 @@ const App: React.FC = () => {
 
     socket.addEventListener('message', (event) => {
       const response = JSON.parse(event.data);
-
-      console.log(response)
 
       if (response.type === 'trade') {
         const symbol = response.data[0].s;
@@ -59,20 +58,20 @@ const App: React.FC = () => {
     <Container>
       <Header />
       <MainContainer>
-          <Box sx={{py: 2, minHeight: '105px', bgcolor: 'aliceblue', display: 'flex', alignItems: 'center'}}>
-            <TopCards stocks={stocks} />
-          </Box>          
-          <Grid container spacing={2}>
-            <Grid item xs={3} md={4}>
-              <LeftForm onAddStock={handleAddStock} />
-            </Grid>
-            <Grid item xs={9} md={8}>              
-              <Box sx={{ mt: 2 }}>
-                {Object.keys(stockData).length > 0 && <StockChart data={stockData} />}
-              </Box>
-            </Grid>
+        <Box sx={{ py: 2, minHeight: '105px', bgcolor: 'aliceblue', display: 'flex', alignItems: 'center' }}>
+          <TopCards stocks={stocks} />
+        </Box>
+        <Grid container spacing={2}>
+          <Grid item xs={3} md={4}>
+            <LeftForm onAddStock={handleAddStock} />
           </Grid>
-        
+          <Grid item xs={9} md={8}>
+            <Box sx={{ mt: 2 }}>
+              {Object.keys(stockData).length > 0 && <StockChart data={stockData} />}
+            </Box>
+          </Grid>
+        </Grid>
+
       </MainContainer>
     </Container>
   );

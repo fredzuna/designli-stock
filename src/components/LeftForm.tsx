@@ -39,16 +39,16 @@ export default function LeftForm({ onAddStock }: IProps) {
   const handleSubmit = (values: IStockFormValues) => {
     // onAddStock(symbol.symbol, alertValue);
 
-    
-      onAddStock(values.symbol, values.alertValue);
-      // onAddStock('BTCM', 2);    
-      //onAddStock('BINANCE:BTCUSDT', 2);    
-      // onAddStock('IC MARKETS:1', 2);
-      // onAddStock('AAPL', 2);
-      // onAddStock('ETH/USD', 2);
-      // onAddStock('BTC', 2);
-      
-    
+
+    onAddStock(values.symbol, values.alertValue);
+    // onAddStock('BTCM', 2);    
+    //onAddStock('BINANCE:BTCUSDT', 2);    
+    // onAddStock('IC MARKETS:1', 2);
+    // onAddStock('AAPL', 2);
+    // onAddStock('ETH/USD', 2);
+    // onAddStock('BTC', 2);
+
+
   };
 
   useEffect(() => {
@@ -76,10 +76,6 @@ export default function LeftForm({ onAddStock }: IProps) {
           onBlur={formik.handleBlur}
           label="Select Stock"
         >
-          {/*<MenuItem value="AAPL">Apple (AAPL)</MenuItem>
-          <option value="AAPL">Apple (AAPL)</option>
-          <option value="BINANCE:BTCUSDT">Bitcoin (BTC)</option>
-          <option value="IC MARKETS:1">IC Markets</option>*/}
           {stockSymbols.map((item) => (
             <MenuItem key={item.symbol} value={item.symbol}>{item.description}</MenuItem>
           ))}
