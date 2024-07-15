@@ -8,6 +8,7 @@ import MainContainer from './components/common/MainContainer';
 import { IStock } from './interfaces/IStock';
 import { IStockData } from './interfaces/IStockData';
 import { apiKey } from './services/apiService';
+import { saveToLocalStorage } from './services/localStorageService';
 
 const App: React.FC = () => {
   const [stocks, setStocks] = useState<IStock[]>([]);
@@ -40,6 +41,9 @@ const App: React.FC = () => {
           ...prevData,
           [symbol]: [...(prevData[symbol] || []), { name: new Date().toLocaleTimeString(), price }],
         }));
+
+        saveToLocalStorage('stocks', stocks);
+        saveToLocalStorage('stockData', stockData);
       }
     });
 
