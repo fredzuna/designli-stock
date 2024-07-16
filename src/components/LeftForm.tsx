@@ -36,8 +36,7 @@ export default function LeftForm({ onAddStock }: IProps) {
   });
 
   const handleSubmit = (values: IStockFormValues) => {    
-    //onAddStock(values.symbol, values.alertValue);
-    onAddStock('BINANCE:BTCUSDT', values.alertValue);
+    onAddStock(values.symbol, values.alertValue);
   };
 
   useEffect(() => {
